@@ -27,3 +27,7 @@ nav li a:hover {
     color: rgb(177, 66, 66);
     text-decoration: none;
 }
+
+h3{
+    text-align: center;
+}
