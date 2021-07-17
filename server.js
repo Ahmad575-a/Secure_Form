@@ -29,7 +29,10 @@ app.use(express.static(publicDir))
 app.set('view engine', 'hbs')
 
 app.get('/', (req, res) => {
-    res.render('index')
+    res.render('Home')
+})
+app.get('/register', (req, res) => {
+    res.render('Register')
 })
 
 app.listen(PORT,()=> console.log("server is running"))
