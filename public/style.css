@@ -1,3 +1,29 @@
-body{
-    background-color: rgb(47, 117, 207);
+nav{
+    background-color: rgb(37, 100, 218);
+    color: whitesmoke;
+    padding: 30px 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav li {
+    list-style: none;
+}
+
+nav li a {
+    color: whitesmoke;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 8px;
+}
+
+nav li a:hover {
+    color: rgb(177, 66, 66);
+    text-decoration: none;
 }
