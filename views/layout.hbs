@@ -13,11 +13,16 @@
 
 <body>
     <nav>
-        <h4>Node-MYSQL</h4>
+        <h4>Secure Form</h4>
         <ul>
             <li><a href="/">Home</a></li>
+            {{#if user}}
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+            {{else}}
             <li><a href="/login">Login</a></li>
             <li><a href="/register">Register</a></li>
+            {{/if}}
         </ul>
     </nav>
 
