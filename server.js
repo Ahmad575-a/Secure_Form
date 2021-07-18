@@ -1,19 +1,26 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 5000
 require('dotenv').config()
+const db = require('./models/dbConfig')
 
-// mysql connection
-const mysql = require('mysql')
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DATABASE
-})
+//  static
+const publicDir = path.join(__dirname, './public')
+app.use(express.static(publicDir))
 
-db.connect((err)=>{
+// body parser and parse json body
+app.use(express.urlencoded({extended: false}))
+app.use(express.json())
+// cookie parser
+app.use(cookieParser());
+
+// setup HBS
+app.set('view engine', 'hbs')
+
+// Database Connection
+db.dbConnection.connect((err)=>{
     if(err){
         console.log(err)
     }else{
@@ -21,18 +28,9 @@ db.connect((err)=>{
     }
 })
 
-//  static
-const publicDir = path.join(__dirname, './public')
-app.use(express.static(publicDir))
 
-// setup HBS
-app.set('view engine', 'hbs')
-
-app.get('/', (req, res) => {
-    res.render('Home')
-})
-app.get('/register', (req, res) => {
-    res.render('Register')
-})
+// Routes
+app.use('/', require('./routes/pages'))
+app.use('/auth', require('./routes/auth'))
 
 app.listen(PORT,()=> console.log("server is running"))
